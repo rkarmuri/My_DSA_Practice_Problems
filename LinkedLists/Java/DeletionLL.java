@@ -96,6 +96,29 @@ public class DeletionLL {
         return head; // Return the modified list
     }
 
+    public static Node deleteMiddlNode(Node head) {
+        if (head == null || head.next == null) {
+            return null; // If list is empty or has only one node
+        }
+        
+        Node slow = head;
+        Node fast = head;
+        Node prev = null;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            prev = slow;
+            slow = slow.next;
+        }
+
+        // 'slow' is now pointing to the middle node
+        if (prev != null) {
+            prev.next = slow.next; // Bypass the middle node
+        }
+
+        return head; // Return the modified list
+    }
+
     private static void printLinkedList(Node head) {
         while (head != null) {
             System.out.print(head.data + " -> ");
@@ -127,6 +150,10 @@ public class DeletionLL {
         int posToDelete = 1;
         head = deleteAfterPostition(head, posToDelete);
         System.out.println("After deleting node at position " + posToDelete + ":");
+        printLinkedList(head);
+
+        head = deleteMiddlNode(head);
+        System.out.println("After deleting middle node:");
         printLinkedList(head);
     }
 
