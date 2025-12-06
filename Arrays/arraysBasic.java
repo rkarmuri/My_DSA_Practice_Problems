@@ -193,12 +193,12 @@ public class arraysBasic {
     private static int[] intersectionOfSortedArrays(int[] nums1, int[] nums2){
         int n = nums1.length, m = nums2.length;
         List<Integer> ans = new ArrayList<>();
-        int[] visited = new int[m];
+        boolean[] visited = new boolean[m];
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
-                if(nums1[i]==nums2[j] && visited[j]==0){
+                if(nums1[i]==nums2[j] && !visited[j]){
                     ans.add(nums1[i]);
-                    visited[j] = 1;
+                    visited[j] = true;
                     break;
                 }
                 else if(nums1[i] < nums2[j]){
@@ -214,6 +214,30 @@ public class arraysBasic {
         }
 
         return res;
+    }
+
+    // Intersection of two sorted arrays using HashSet
+    private static int[] intersectionOfSortedArraysUsingHashSet(int[] nums1, int[] nums2) {
+        HashSet<Integer> set = new HashSet<>();
+        HashSet<Integer> intersectionSet = new HashSet<>();
+
+        for (int num : nums1) {
+            set.add(num);
+        }
+
+        for (int num : nums2) {
+            if (set.contains(num)) {
+                intersectionSet.add(num);
+            }
+        }
+
+        int[] result = new int[intersectionSet.size()];
+        int index = 0;
+        for (int num : intersectionSet) {
+            result[index++] = num;
+        }
+
+        return result;
     }
 
     private static int[] intersectionOfSortedArraysOptimal(int[] nums1, int[] nums2){
@@ -270,5 +294,7 @@ public class arraysBasic {
         System.out.println("Intersection of two sorted arrays is: " + java.util.Arrays.toString(intersectionResult));
         int[] intersectionResult2 = intersectionOfSortedArraysOptimal(nums1, nums2);
         System.out.println("Intersection of two sorted arrays Optimal is: " + java.util.Arrays.toString(intersectionResult2));
+        int[] intersectionHashSetResult = intersectionOfSortedArraysUsingHashSet(nums1, nums2);
+        System.out.println("Intersection of two sorted arrays using HashSet is: " + java.util.Arrays.toString(intersectionHashSetResult));
     }
 }
