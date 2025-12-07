@@ -43,9 +43,10 @@ public class MajorityElement1 {
 
         for(int num : nums){
             if(cnt == 0){
+                cnt = 1;
                 ele = num;
             }
-            if(num == ele){
+            else if(num == ele){
                 cnt++;
             } else {
                 cnt--;
@@ -57,7 +58,7 @@ public class MajorityElement1 {
             if(num == ele){
                 cnt1++;
             }
-    }
+        }
 
         if(cnt1 > nums.length / 2){
             return ele;

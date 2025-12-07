@@ -2,7 +2,7 @@ package Sorting.Java;
 
 public class MergeSort {
     public static void mergeSort(int[] arr, int low, int high) {
-        // Recurision base case
+        // Recursion base case
         // If low is equal to high, it means the array has only one element
         // and is already sorted, so we return.
         if(low==high) {
