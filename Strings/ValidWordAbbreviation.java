@@ -24,4 +24,13 @@ public class ValidWordAbbreviation {
         }
         return i == n && j == m;
     }
+
+    public static void main(String[] args) {
+        ValidWordAbbreviation validator = new ValidWordAbbreviation();
+        System.out.println(validator.validWordAbbreviation("internationalization", "i12iz4n")); // true
+        System.out.println(validator.validWordAbbreviation("apple", "a3e")); // true
+        System.out.println(validator.validWordAbbreviation("apple", "a2e")); // false
+        System.out.println(validator.validWordAbbreviation("substitution", "s10n")); // true
+        System.out.println(validator.validWordAbbreviation("substitution", "s01n")); // false
+    }
 }
