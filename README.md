@@ -58,5 +58,8 @@ Testing
 
 Contribution
 
+- Outsiders: DO NOT push directly to this repository. If you are not a repository maintainer, fork the repository, create a branch in your fork, and submit a pull request (PR). Maintainers will review and merge accepted PRs.
 - Fork → create a feature branch → add the problem + example → open a PR.
 - PR checklist: code compiles, includes an example `main` or unit test, follows naming conventions, and a short description in the PR.
+
+If you are a maintainer and need direct push access, coordinate with the repo owner to be added as a collaborator; otherwise assume PR-based workflow only.
