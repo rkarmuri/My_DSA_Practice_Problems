@@ -10,14 +10,20 @@ public class AsteroidCollision {
             // If the asteroid is moving to the right, add it to the stack
             if(asteroids[i] > 0){
                 stack.add(asteroids[i]);
-            } else {
+            }
+            // If the asteroid is moving to the left or negative 
+            else {
                 // Compare with the top of the stack for collision
+                // While there is a collision and the top of the stack is smaller
                 while(!stack.isEmpty() && stack.get(stack.size() - 1) > 0 && stack.get(stack.size() - 1) < Math.abs(asteroids[i])){
                     stack.remove(stack.size() - 1);
                 }
+                // If both are equal, remove the top of the stack
                 if(!stack.isEmpty() && stack.get(stack.size() - 1) == Math.abs(asteroids[i])){
                     stack.remove(stack.size() - 1);
-                } else if(stack.isEmpty() || stack.get(stack.size() - 1) < 0){
+                }
+                // If the stack is empty or the top of the stack is negative, add the current asteroid 
+                else if(stack.isEmpty() || stack.get(stack.size() - 1) < 0){
                     stack.add(asteroids[i]);
                 }
             }
