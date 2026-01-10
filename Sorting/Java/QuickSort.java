@@ -31,7 +31,7 @@ public class QuickSort {
             }
         }
         // Swap the pivot element with the element at j
-        swap(arr, low, j);
+        swap(arr, low, j); // We place the pivot in its correct position
         return j; // Return the partition index
     }
 

@@ -1,5 +1,5 @@
 public class FindMissingRepeatingNos {
-    public static int[] findMissingRepeatingNumbers(int[] arr){
+    public static String findMissingRepeatingNumbers(int[] arr){
         long n = arr.length;
 
         long sumOfN = n * (n + 1) / 2;
@@ -25,11 +25,11 @@ public class FindMissingRepeatingNos {
 
         int missing = (int)((diff + sum) / 2); // => (missing + repeating)+(missing - repeating) / 2
         int repeating = (int)(sum - missing); // => (missing + repeating) - missing
-        return new int[]{missing, repeating};
+        return missing + " " + repeating;
     }
 
     // Extreme Naive Approach: Use two loops to find the missing and repeating numbers
-    public static int[] findMissingRepeatingNumbersBF(int[] arr){
+    public static String findMissingRepeatingNumbersBF(int[] arr){
         int n = arr.length;
         int repeating = -1, missing = -1;
 
@@ -50,19 +50,21 @@ public class FindMissingRepeatingNos {
                 break;
             }
         }
-        return new int[]{missing, repeating};
+        return missing + " " + repeating;
     }
 
     // Hashing Approach: Use an auxiliary array to count occurrences
-    public static int[] findMissingRepeatingNumbersHashing(int[] arr){
+    public static String findMissingRepeatingNumbersHashing(int[] arr){
         int n = arr.length;
         int[] hash = new int[n + 1];
         int missing = -1, repeating = -1;
 
+        // Count occurrences of each number in the array
         for(int num : arr){
             hash[num]++;
         }
 
+        // Identify the missing and repeating numbers
         for(int i = 1; i <= n; i++){
             if(hash[i] == 0){
                 missing = i;
@@ -74,21 +76,23 @@ public class FindMissingRepeatingNos {
                 break;
             }
         }
-        return new int[]{missing, repeating};
+
+        String res = missing + " " + repeating;;
+        return res;
     }
 
     public static void main(String[] args) {
         int[] arr = {3, 1, 3, 5, 4};
-        int[] result = findMissingRepeatingNumbers(arr);
-        System.out.println("Missing Number: " + result[0]);
-        System.out.println("Repeating Number: " + result[1]);
+        String result = findMissingRepeatingNumbers(arr);
+        System.out.println("Missing Number: " + result.split(" ")[0]);
+        System.out.println("Repeating Number: " + result.split(" ")[1]);
 
-        int[] resultBF = findMissingRepeatingNumbersBF(arr);
-        System.out.println("Missing Number (Brute Force): " + resultBF[0]);
-        System.out.println("Repeating Number (Brute Force): " + resultBF[1]);
+        String resultBF = findMissingRepeatingNumbersBF(arr);
+        System.out.println("Missing Number (Brute Force): " + resultBF.split(" ")[0]);
+        System.out.println("Repeating Number (Brute Force): " + resultBF.split(" ")[1]);
 
-        int[] resultHashing = findMissingRepeatingNumbersHashing(arr);
-        System.out.println("Missing Number (Hashing): " + resultHashing[0]);
-        System.out.println("Repeating Number (Hashing): " + resultHashing[1]);
+        String resultHashing = findMissingRepeatingNumbersHashing(arr);
+        System.out.println("Missing Number (Hashing): " + resultHashing.split(" ")[0]);
+        System.out.println("Repeating Number (Hashing): " + resultHashing.split(" ")[1]);
     }
 }
